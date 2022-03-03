@@ -17,9 +17,14 @@ class WebViewProxy {
 
     _onWebviewUpdate(size, pixelBuffer) {
         // Copy the webview contents onto the canvas
-        let ctx = this._canvas.getContext('2d');
-        let newImage = new ImageData(pixelBuffer, size.width, size.height);
-        ctx.putImageData(newImage, 0, 0);
+        const ctx = this._canvas.getContext('bitmaprenderer');
+        const newImageData = new ImageData(pixelBuffer, size.width);
+        createImageBitmap(newImageData).then((img) => {
+            ctx.transferFromImageBitmap(img);
+        });
+        // let ctx = this._canvas.getContext('2d');
+        // let newImage = new ImageData(pixelBuffer, size.width, size.height);
+        // ctx.putImageData(newImage, 0, 0);
     }
 
     _onMouseMove(event) {
