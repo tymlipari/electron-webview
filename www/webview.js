@@ -14,3 +14,19 @@ function animCallback() {
     elem.style.top = pos + 'px';
     elem.style.left = pos + 'px';
 }
+
+document.addEventListener('mousemove', (event) => {
+    elem.style.backgroundColor = randomColorHex();
+})
+
+function randomColorHex() {
+    function randomInt() {
+        return Math.floor(Math.random() * 256);
+    }
+
+    const [r, g, b] = [randomInt(), randomInt(), randomInt()];
+
+    return "#" + r.toString(16).padStart(2, '0') +
+                 g.toString(16).padStart(2, '0') +
+                 b.toString(16).padStart(2, '0');
+}

@@ -1,5 +1,15 @@
 const { BrowserWindow, ipcMain, MessageChannelMain, MessagePortMain, BrowserView } = require('electron');
 
+const inputEventMapping = {
+    'mouse-down': 'mousemove',
+    'mouse-enter': 'mouseenter',
+    'mouse-leave': 'mouseleave',
+    'mouse-move': 'mousemove',
+    'mouse-out': 'mouseout',
+    'mouse-over': 'mouseover',
+    'mouse-up': 'mouseup'
+};
+
 class WebViewMain {
     constructor(port) {
         this._port = port;
@@ -44,8 +54,15 @@ class WebViewMain {
     }
 
     _onInputEvent(event) {
-        if (event.inputEvent === 'mouse-move') {
-            console.log("Mouse moved to [" + event.x + ", " + event.y + "]");
+        const type = inputEventMapping[event.inputEvent];
+        if (type) {
+            const inputEvent = {
+                type: type,
+                x: event.x,
+                y: event.y
+            };
+            console.log(inputEvent);
+            this._browser.webContents.sendInputEvent(inputEvent);
         }
     }
 }
