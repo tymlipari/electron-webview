@@ -12,13 +12,13 @@ class WebViewProxy {
         this._webviewPort.start();
 
         // Register HTML element input handlers
-        this._canvas.addEventListener('mousedown', (event) => this._onMouseEvent('mouse-down', event));
-        this._canvas.addEventListener('mouseenter', (event) => this._onMouseEvent('mouse-enter', event));
-        this._canvas.addEventListener('mouseleave', (event) => this._onMouseEvent('mouse-leave', event));
-        this._canvas.addEventListener('mousemove', (event) => this._onMouseEvent('mouse-move', event));
-        this._canvas.addEventListener('mouseout', (event) => this._onMouseEvent('mouse-out', event));
-        this._canvas.addEventListener('mouseover', (event) => this._onMouseEvent('mouse-over', event));
-        this._canvas.addEventListener('mouseup', (event) => this._onMouseEvent('mouse-up', event));
+        this._canvas.addEventListener('mousedown', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mouseenter', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mouseleave', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mousemove', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mouseout', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mouseover', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mouseup', (event) => this._onMouseEvent(event));
     }
 
     _onWebviewUpdate(size, pixelBuffer) {
@@ -33,10 +33,10 @@ class WebViewProxy {
         // ctx.putImageData(newImage, 0, 0);
     }
 
-    _onMouseEvent(eventKind, event) {
+    _onMouseEvent(event) {
         const msg = {
             kind: 'input-event',
-            inputEvent: eventKind,
+            inputType: event.type,
             x: event.offsetX,
             y: event.offsetY,
         };

@@ -51,9 +51,9 @@ export default class WebViewMain {
     }
 
     _onInputEvent(event: any) {
-        if (event.inputEvent) {
+        if (event.inputType) {
             const inputReport = {
-                type: event.inputEvent,
+                type: event.inputType,
                 x: event.x,
                 y: event.y
             };
