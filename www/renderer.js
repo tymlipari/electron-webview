@@ -13,12 +13,10 @@ class WebViewProxy {
 
         // Register HTML element input handlers
         this._canvas.addEventListener('mousedown', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mouseup', (event) => this._onMouseEvent(event));
+        this._canvas.addEventListener('mousemove', (event) => this._onMouseEvent(event));
         this._canvas.addEventListener('mouseenter', (event) => this._onMouseEvent(event));
         this._canvas.addEventListener('mouseleave', (event) => this._onMouseEvent(event));
-        this._canvas.addEventListener('mousemove', (event) => this._onMouseEvent(event));
-        this._canvas.addEventListener('mouseout', (event) => this._onMouseEvent(event));
-        this._canvas.addEventListener('mouseover', (event) => this._onMouseEvent(event));
-        this._canvas.addEventListener('mouseup', (event) => this._onMouseEvent(event));
     }
 
     _onWebviewUpdate(size, pixelBuffer) {
